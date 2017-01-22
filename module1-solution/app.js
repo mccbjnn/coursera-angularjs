@@ -12,14 +12,16 @@ function LunchCheckController($scope) {
         console.log($scope.lunchMenu);
         if ($scope.lunchMenu === undefined ||  $scope.lunchMenu.length === 0) {
             $scope.message = "Please enter data first";
-            $scope.isEmpty = true;
+            $scope.borderColor = "border-red";
+            $scope.textColor = "text-red";
         }
         else {
             var arrayOfLunch = $scope.lunchMenu.split(separator);
             var total = totalElement(arrayOfLunch);
             console.log(total);
             $scope.message = total > 3 ? "Too much!" : "Enjoy!";
-            $scope.isEmpty = false;
+            $scope.borderColor = "border-green";
+            $scope.textColor = "text-green";
         }
     };
 }
