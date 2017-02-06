@@ -13,13 +13,21 @@ function NarrowItDownController(MenuSearchService) {
     var ctrl = this;
 
     ctrl.found = [];
+    ctrl.isClicked = false;
 
     ctrl.findItems = function() {
-        var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
-        promise.then(function(result){
-            ctrl.found = result;
-        });
-        //ctrl.found = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+        if (ctrl.searchTerm !== undefined && ctrl.searchTerm != '') {
+            var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+            promise.then(function(result){
+                ctrl.found = result;      
+            });
+        }
+        else {
+            ctrl.found = [];
+        }
+        ctrl.isClicked = true;
+        console.log("Found Items After Search: " + ctrl.found.length);
+        console.log("isClicked: " + ctrl.isClicked);
     }
 
     ctrl.removeItem = function(itemIndex) {
@@ -40,9 +48,6 @@ function MenuSearchService($http, APIPath) {
         }).then(function (result) {
             var foundItems = [];
             var allItems = result.data.menu_items;
-            //console.log("Number of all items: " + allItems.length());
-            // console.log("All Items: " + allItems);
-            // console.log(result);
             angular.forEach(allItems, function (value, key) {
                 //console.log("Item.description: " + value.description);
                 var description = value.description;
@@ -51,7 +56,6 @@ function MenuSearchService($http, APIPath) {
                 }
             })
             console.log("Found Items: " + foundItems.length);
-            console.log("Found items: " + foundItems[1].description);
             return foundItems;
         });
     };
@@ -63,7 +67,8 @@ function FoundItemsDirective() {
         templateUrl: 'foundItems.html',
         scope: {
             foundItems: '<',
-            onRemove: '&'
+            onRemove: '&',
+            isClicked: '@isClicked'
         },
         controller: FoundItemsDirectiveController,
         controllerAs: 'ctrl',
@@ -74,9 +79,6 @@ function FoundItemsDirective() {
 
 function FoundItemsDirectiveController() {
     var ctrl = this;
-    console.log("test: " + ctrl.foundItems);
+    console.log("test: " + ctrl.foundItems.length);
 }
-
-//controller: FoundItemsDirectiveController,
-// controllerAs: 'list',
 })();
