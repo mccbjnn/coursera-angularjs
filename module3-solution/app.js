@@ -15,15 +15,16 @@ function NarrowItDownController(MenuSearchService) {
     ctrl.found = [];
 
     ctrl.findItems = function() {
-        /*var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+        var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
         promise.then(function(result){
             ctrl.found = result;
-        });*/
-        ctrl.found = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
+        });
+        //ctrl.found = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
     }
 
     ctrl.removeItem = function(itemIndex) {
         ctrl.found.splice(itemIndex, 1);
+        console.log("After delete: " + ctrl.found.length);
     }
 }
 
@@ -52,14 +53,13 @@ function MenuSearchService($http, APIPath) {
             console.log("Found Items: " + foundItems.length);
             console.log("Found items: " + foundItems[1].description);
             return foundItems;
-        }), function (response) {
-            console.log('Error: ' + response);
-        };
+        });
     };
 }
 
 function FoundItemsDirective() {
     var ddo = {
+        restrict: 'E',
         templateUrl: 'foundItems.html',
         scope: {
             foundItems: '<',

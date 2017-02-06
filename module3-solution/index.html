@@ -16,17 +16,10 @@
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="ctrl.findItems();">Narrow It Down For Me!</button>
     </div>
-    <div>
-      <ol>
-        <li ng-repeat="item in ctrl.found">
-          {{ item.description}} of {{ item.name }}
-        </li>
-      </ol>
-    </div>
     <!-- found-items should be implemented as a component -->
-    <!--<found-items found-items="ctrl.found" on-remove="ctrl.removeItem({index: $index})"></found-items>-->
+    <found-items found-items="ctrl.found" on-remove="ctrl.removeItem(index);"></found-items>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
