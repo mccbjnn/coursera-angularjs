@@ -11,21 +11,25 @@
         var service = this;
 
         service.getAllCategories = function() {
-            var response = $http({
-            method: "GET",
-            url: (ApiBasePath + "/categories.json")
+                console.log("begin get category data");
+                var categories = $http({
+                method: "GET",
+                url: (ApiBasePath + "/categories.json")
+            }).then(function (response) {
+                categories = response.data;
+                console.log("Cateogries: ", categories);
             });
 
-            return response;
+            return categories;
         };
 
         service.getItemsForCategory = function (categoryShortName) {
             var response = $http({
-            method: "GET",
-            url: (ApiBasePath + "/menu_items.json"),
-            params: {
-                category: categoryShortName
-            }
+                method: "GET",
+                url: (ApiBasePath + "/menu_items.json"),
+                params: {
+                    category: categoryShortName
+                }
             });
 
             return response;
