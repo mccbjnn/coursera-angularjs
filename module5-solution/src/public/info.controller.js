@@ -9,16 +9,18 @@ function InfoController(MenuService, ApiPath,firstName, lastName, email, phone, 
   var $ctrl = this;
   $ctrl.basePath = ApiPath;
 
-  if (email === undefined || email.length === 0) {
+  if (email === undefined || email.length === 0 || dish === undefined) {
       $ctrl.showSignUp = true;
   }
-
-  $ctrl.firstName = firstName;
-  $ctrl.lastName = lastName;
-  $ctrl.email = email;
-  $ctrl.phone = phone;
-  $ctrl.favDish = favDish;
-  $ctrl.dish = dish;
+  else {
+    $ctrl.firstName = firstName;
+    $ctrl.lastName = lastName;
+    $ctrl.email = email;
+    $ctrl.phone = phone;
+    $ctrl.favDish = favDish;
+    $ctrl.dish = dish;
+  }
+  
 }
 
 })();

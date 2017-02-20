@@ -33,27 +33,14 @@ function MenuService($http, ApiPath) {
     });
   };
 
-  service.setSignUpInfo = function (firstName, lastName, email, phone, favDish) {
+  service.setSignUpInfo = function (firstName, lastName, email, phone, favDish, dish) {
     service.firstName = firstName;
     service.lastName = lastName;
     service.email = email;
     service.phone = phone;
     service.favDish = favDish;
-
-    service.dish = $http.get(ApiPath + '/menu_items/' + favDish + ".json")
-                        .then(function (response) {
-                          var data = response.data;
-                          if (data.status === "500") {
-                            return [];
-                          }
-                          else {
-                            return data;
-                          }
-                        });
-    if (service.dish.length === 0) return false;
-    return true;
-
-  }
+    service.dish = dish;
+  };
 
 }
 
