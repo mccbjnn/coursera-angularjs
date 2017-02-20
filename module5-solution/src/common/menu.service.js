@@ -39,6 +39,18 @@ function MenuService($http, ApiPath) {
     service.email = email;
     service.phone = phone;
     service.favDish = favDish;
+
+    service.dish = $http.get(ApiPath + '/menu_items/' + favDish + ".json")
+                        .then(function (response) {
+                          var data = response.data;
+                          if (data.status === "500") {
+                            return [];
+                          }
+                          else {
+                            return data;
+                          }
+                        });
+
   }
 
 }

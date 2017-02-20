@@ -4,15 +4,17 @@
 angular.module('public')
 .controller('InfoController', InfoController);
 
-InfoController.$inject = ['MenuService', 'firstName', 'lastName', 'email', 'phone', 'favDish'];
-function InfoController(MenuService, firstName, lastName, email, phone, favDish) {
+InfoController.$inject = ['MenuService', 'ApiPath', 'firstName', 'lastName', 'email', 'phone', 'favDish', 'dish'];
+function InfoController(MenuService, ApiPath,firstName, lastName, email, phone, favDish, dish) {
   var $ctrl = this;
-  
+  $ctrl.basePath = ApiPath;
+
   $ctrl.firstName = firstName;
   $ctrl.lastName = lastName;
   $ctrl.email = email;
   $ctrl.phone = phone;
   $ctrl.favDish = favDish;
+  $ctrl.dish = dish;
 }
 
 })();

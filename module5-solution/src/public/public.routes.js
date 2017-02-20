@@ -68,6 +68,9 @@ function routeConfig ($stateProvider) {
         favDish: ['MenuService', function(MenuService){
           return MenuService.favDish;
         }],
+        dish: ['MenuService', function(MenuService){
+          return MenuService.dish;
+        }]
       }
     });
 }

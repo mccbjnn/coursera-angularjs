@@ -2,7 +2,6 @@
     <div class="col-sm-6">
         <form action="" method="POST" role="form">
             <legend>YOUR INFO</legend>
-
             <div class="form-group">
                 <label for="">First Name</label>
                 <input type="text" class="form-control" id="firstname" ng-model="infoCtrl.firstName">
@@ -24,5 +23,19 @@
                 <input type="text" class="form-control" id="favdish" ng-model="infoCtrl.favDish">
             </div>
         </form>
+        <div class="row">
+                <div class="col-sm-5">
+                    <div class="menu-item-photo">
+                        <div>{{infoCtrl.dish.short_name}}</div>
+                        <img class="img-responsive" width="250" height="150" ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.dish.short_name}}.jpg"
+                            alt="{{infoCtrl.dish.name}}">
+                    </div>
+                    <div class="menu-item-price">{{infoCtrl.dish.price_small | currency}}<span> {{infoCtrl.dish.small_portion_name}}</span> {{infoCtrl.dish.price_large | currency}} <span>{{infoCtrl.dish.large_portion_name}}</span></div>
+                </div>
+                <div class="menu-item-description col-sm-7">
+                    <h3 class="menu-item-title">{{infoCtrl.dish.name}}</h3>
+                    <p class="menu-item-details">{{infoCtrl.dish.description}}</p>
+                </div>
+            </div>
     </div>
 </div>
