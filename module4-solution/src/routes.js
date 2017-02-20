@@ -27,9 +27,17 @@
         })
 
         .state('items', {
-            url: '/items',
-            templateUrl: 'src/templates/items.template.html'
-        })
+            url: '/items/{catShortName}',
+            templateUrl: 'src/templates/items.template.html',
+            controller: "ItemListController as itemList",
+            resolve: {
+                data: ['$stateParams', 'MenuDataService',
+                    function($stateParams, MenuDataService) {
+                        return MenuDataService.getItemsForCategory($stateParams.catShortName);
+                    }
+                ]
+            }
+        });
     }
 
 })();
