@@ -9,6 +9,10 @@ function InfoController(MenuService, ApiPath,firstName, lastName, email, phone, 
   var $ctrl = this;
   $ctrl.basePath = ApiPath;
 
+  if (email === undefined || email.length === 0) {
+      $ctrl.showSignUp = true;
+  }
+
   $ctrl.firstName = firstName;
   $ctrl.lastName = lastName;
   $ctrl.email = email;

@@ -7,10 +7,10 @@ angular.module('public')
 SignUpController.$inject = ['MenuService'];
 function SignUpController(MenuService) {
   var $ctrl = this;
-  
+  $ctrl.downloaded = false;
+
   $ctrl.setSignUpInfo = function () {
-      MenuService.setSignUpInfo($ctrl.firstName, $ctrl.lastName, $ctrl.email, $ctrl.phone, $ctrl.favDish);
-      console.log($ctrl.firstName);
+      $ctrl.downloaded = MenuService.setSignUpInfo($ctrl.firstName, $ctrl.lastName, $ctrl.email, $ctrl.phone, $ctrl.favDish);
   }
 }
 

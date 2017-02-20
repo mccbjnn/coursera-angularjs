@@ -50,6 +50,8 @@ function MenuService($http, ApiPath) {
                             return data;
                           }
                         });
+    if (service.dish.length === 0) return false;
+    return true;
 
   }
 
